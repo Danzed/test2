@@ -1,0 +1,21 @@
+version: '2'
+services:
+  web:
+    restart: unless-stopped
+    env_file: .env
+    build: .
+    container_name: aven-web-api
+    ports:
+      - "9000:9000"
+    environment:
+      - NODE_ENV=development
+    volumes_from:
+      - web-data
+  web-data:
+    build: .
+    entrypoint: /bin/true
+    volumes:
+      - ./:/opt/aven-web-api
+      - /opt/aven-web-api/node_modules
+      - /opt/aven-web-api/public
+      - /opt/aven-web-api/uploads
