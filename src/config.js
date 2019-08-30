@@ -41,7 +41,7 @@ const config = {
   test: { },
   development: {
     mongo: {
-      uri: 'mongodb://aven-web-api:aqInlVhvS1lvF8zQ6nxifDTB7yDNsojBemGgyQRLfRJsEr2etK3FXkRI9neYTO4Ne6QLndg9hEN1B3vkefE3Mw%3D%3D@aven-web-api.documents.azure.com:10255/aven-web-api-dev?ssl=true&sslverifycertificate=false',
+      uri: 'mongodb://aven-web-api-dev:Udt2WtvVuaqR2Ra2IEUaDyWVxmsYUuLwyAzxDV195YlegCi94M401vUUfVWp0D59yumcOIaEdIozFBR8XQ2UEA%3D%3D@aven-web-api-dev.documents.azure.com:10255/aven-web-api-dev?ssl=true&sslverifycertificate=false',
       options: {
         debug: true
       }
