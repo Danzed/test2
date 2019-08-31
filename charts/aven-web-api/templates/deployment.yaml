@@ -28,5 +28,5 @@ spec:
         resources:
 {{ toYaml .Values.resources | indent 12 }}
         env:
-          - name: ASPNETCORE_ENVIRONMENT
+          - name: MASTER_KEY
             value: Development
