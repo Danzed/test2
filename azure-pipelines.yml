@@ -13,7 +13,9 @@ variables:
   imageName: '$(projectName)'
   # define 3 more variables: registryName, registryLogin and registryPassword in the build pipeline in UI
 
-
+steps:
+- script: npm test
+  displayName: 'Run Test'
 steps:
 - bash: docker build -f $(system.defaultWorkingDirectory)/Dockerfile -t $(registryServerName)/$(imageName):$(build.buildId) $(system.defaultWorkingDirectory)/
   displayName: 'docker build'
