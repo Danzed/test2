@@ -6,9 +6,6 @@ trigger:
   branches:
     include: 
     - refs/heads/*
-  paths:
-    include: 
-    - aven-web-api
 
 variables:
   projectName: aven-web-api
