@@ -29,7 +29,7 @@ spec:
 {{ toYaml .Values.resources | indent 12 }}
         env:
           - name: MASTER_KEY
-            value: $(MASTER_KEY)
+            value: {{ $(MASTER_KEY) }}
           - name: JWT_SECRET
             value: $(JWT_SECRET)
           - name: SENDGRID_KEY
