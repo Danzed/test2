@@ -11,7 +11,7 @@ trigger:
     - aven-web-api/
 
 variables:
-  projectName: aven-web-api
+  projectName: avenwebapi
   registryServerName: '$(registryName).azurecr.io'
   imageName: '$(projectName)'
   # define 3 more variables: registryName, registryLogin and registryPassword in the build pipeline in UI
