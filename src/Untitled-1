@@ -1,0 +1,4 @@
+kubectl logs -f --namespace aven \
+$(kubectl get pods --namespace aven \
+-l app=aven-web-api \
+-o jsonpath='{ .items[0].metadata.name }')
