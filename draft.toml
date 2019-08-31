@@ -1,7 +1,7 @@
 [environments]
   [environments.development]
-    name = "parrot"
-    namespace = "phippyandfriends"
+    name = "aven-web-api"
+    namespace = "aven"
     wait = true
     watch = false
     watch-delay = 2
