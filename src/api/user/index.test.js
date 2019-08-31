@@ -22,7 +22,7 @@ test('GET /users 200 (admin)', async () => {
     .get(apiRoot)
     .query({ access_token: adminSession })
   expect(status).toBe(200)
-  expect(Array.isArray(body.rows)).toBe(false)
+  expect(Array.isArray(body.rows)).toBe(true)
   expect(Number.isNaN(body.count)).toBe(false)
 })
 
