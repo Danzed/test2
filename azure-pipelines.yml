@@ -16,7 +16,7 @@ variables:
 steps:
 - script: npm test
   displayName: 'Run Test'
-steps:
+  
 - bash: docker build -f $(system.defaultWorkingDirectory)/Dockerfile -t $(registryServerName)/$(imageName):$(build.buildId) $(system.defaultWorkingDirectory)/
   displayName: 'docker build'
 
