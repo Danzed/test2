@@ -15,7 +15,7 @@ services:
     build: .
     entrypoint: /bin/true
     volumes:
-      - ./:/opt/aven-web-api
-      - /opt/aven-web-api/node_modules
-      - /opt/aven-web-api/public
-      - /opt/aven-web-api/uploads
+      - ./:/opt/aven-web-api-dev
+      - /opt/aven-web-api-dev/node_modules
+      - /opt/aven-web-api-dev/public
+      - /opt/aven-web-api-dev/uploads
