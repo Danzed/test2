@@ -8,7 +8,7 @@ trigger:
     - refs/heads/*
 
 variables:
-  projectName: aven-web-api
+  projectName: aven-web-api-dev
   registryServerName: '$(registryName).azurecr.io'
   imageName: '$(projectName)'
   # define 3 more variables: registryName, registryLogin and registryPassword in the build pipeline in UI
@@ -29,11 +29,11 @@ steps:
 # - bash: docker build -f $(system.defaultWorkingDirectory)/Dockerfile -t $(registryServerName)/$(imageName):$(build.buildId) $(system.defaultWorkingDirectory)/
 #   displayName: 'docker build'
 
-# - bash: |
-#     docker login $(registryServerName) -u $(registryLogin) -p $(registryPassword)
-#     docker push $(registryServerName)/$(imageName):$(build.buildId)
-#   displayName: 'docker push'
-#   condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+- bash: |
+    docker login $(registryServerName) -u $(registryLogin) -p $(registryPassword)
+    docker push $(registryServerName)/$(imageName):$(build.buildId)
+  displayName: 'docker push'
+  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
 
 # - task: HelmInstaller@0
 #   displayName: 'Install Helm'
