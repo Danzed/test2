@@ -14,19 +14,19 @@ variables:
   # define 3 more variables: registryName, registryLogin and registryPassword in the build pipeline in UI
 
 steps:
-- bash: |
-    docker images -a
-    docker ps -a
-  displayName: 'ls'
-
 - script: npm install
   displayName: 'NPM INSTALL'
 
 - script: npm test
   displayName: 'Run Test'
 
-# - bash: docker-compose up -d
-#   displayName: 'docker compose'
+- bash: docker-compose up -d
+  displayName: 'docker compose'
+
+- bash: |
+    docker images -a
+    docker ps -a
+  displayName: 'ls'
 
 # - bash: docker build -f $(system.defaultWorkingDirectory)/Dockerfile -t $(registryServerName)/$(imageName):$(build.buildId) $(system.defaultWorkingDirectory)/
 #   displayName: 'docker build'
