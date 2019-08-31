@@ -23,23 +23,26 @@ steps:
 - script: npm test
   displayName: 'Run Test'
 
-- bash: docker build -f $(system.defaultWorkingDirectory)/Dockerfile -t $(registryServerName)/$(imageName):$(build.buildId) $(system.defaultWorkingDirectory)/
-  displayName: 'docker build'
+- bash: docker-compose up -d
+  displayName: 'docker compose'
 
-- bash: |
-    docker login $(registryServerName) -u $(registryLogin) -p $(registryPassword)
-    docker push $(registryServerName)/$(imageName):$(build.buildId)
-  displayName: 'docker push'
-  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+# - bash: docker build -f $(system.defaultWorkingDirectory)/Dockerfile -t $(registryServerName)/$(imageName):$(build.buildId) $(system.defaultWorkingDirectory)/
+#   displayName: 'docker build'
 
-- task: HelmInstaller@0
-  displayName: 'Install Helm'
-  inputs:
-    helmVersion: 2.14.1
+# - bash: |
+#     docker login $(registryServerName) -u $(registryLogin) -p $(registryPassword)
+#     docker push $(registryServerName)/$(imageName):$(build.buildId)
+#   displayName: 'docker push'
+#   condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
 
-- bash: helm package --version $(build.buildId) --destination $(build.artifactStagingDirectory) $(system.defaultWorkingDirectory)/charts/$(projectName)
-  displayName: 'helm package'
+# - task: HelmInstaller@0
+#   displayName: 'Install Helm'
+#   inputs:
+#     helmVersion: 2.14.1
 
-- bash: az acr helm push -n $(registryName) -u $(registryLogin) -p $(registryPassword) $(build.artifactStagingDirectory)/$(projectName)-$(build.buildId).tgz
-  displayName: 'az acr helm push'
-  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+# - bash: helm package --version $(build.buildId) --destination $(build.artifactStagingDirectory) $(system.defaultWorkingDirectory)/charts/$(projectName)
+#   displayName: 'helm package'
+
+# - bash: az acr helm push -n $(registryName) -u $(registryLogin) -p $(registryPassword) $(build.artifactStagingDirectory)/$(projectName)-$(build.buildId).tgz
+#   displayName: 'az acr helm push'
+#   condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
