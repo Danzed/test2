@@ -26,21 +26,21 @@ steps:
   displayName: 'docker rmi images'  
 
 - script: npm install
-  displayName: 'NPM INSTALL'
+  displayName: 'npm install'
 
 - script: npm test
-  displayName: 'Run Test'
+  displayName: 'run Test'
 
-- bash: docker-compose up -d
-  displayName: 'docker compose'
+# - bash: docker-compose up -d
+#   displayName: 'docker compose'
 
-# - bash: docker build -f $(system.defaultWorkingDirectory)/Dockerfile -t $(registryServerName)/$(imageName):$(build.buildId) $(system.defaultWorkingDirectory)/
-#   displayName: 'docker build'
+- bash: docker build -f $(system.defaultWorkingDirectory)/Dockerfile -t $(registryServerName)/$(imageName):$(build.buildId) $(system.defaultWorkingDirectory)/
+  displayName: 'docker build'
 - bash: |
     docker images -a
     docker ps -a
   displayName: 'ls'
-  
+
 - bash: docker tag $(imageName) $(registryServerName)/$(imageName)-dev:$(build.buildId)
   displayName: 'docker tag'
 
