@@ -23,9 +23,7 @@ steps:
   displayName: 'docker prune container'
 
 - bash: docker rmi $(docker images --format "{{.ID}}")
-  displayName: 'docker rmi images'
-
-  
+  displayName: 'docker rmi images'  
 
 - script: npm install
   displayName: 'NPM INSTALL'
@@ -38,14 +36,13 @@ steps:
 
 # - bash: docker build -f $(system.defaultWorkingDirectory)/Dockerfile -t $(registryServerName)/$(imageName):$(build.buildId) $(system.defaultWorkingDirectory)/
 #   displayName: 'docker build'
-
-- bash: docker tag $(imageName) $(registryServerName)/$(imageName)-dev:$(build.buildId)
-  displayName: 'docker tag'
-
 - bash: |
     docker images -a
     docker ps -a
   displayName: 'ls'
+  
+- bash: docker tag $(imageName) $(registryServerName)/$(imageName)-dev:$(build.buildId)
+  displayName: 'docker tag'
 
 
 - bash: |
