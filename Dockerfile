@@ -16,10 +16,6 @@ EXPOSE 80 443 3000 35729 8080 9000
 # Set development environment as default
 ENV NODE_ENV development
 
-ENV MASTER_KEY $(MASTER_KEY)
-ENV JWT_SECRET $(JWT_SECRET)
-ENV SENDGRID_KEY $(SENDGRID_KEY)
-
 # Install Utilities
 RUN apt-get update -q  \
     && apt-get install -yqq \

@@ -27,3 +27,10 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         resources:
 {{ toYaml .Values.resources | indent 12 }}
+        env:
+          - name: MASTER_KEY
+            value: 9FgEgy3Cst6kbwdhztBbL0PuvYOC4LZ3
+          - name: JWT_SECRET
+            value: 3t4klGORU94vMZjWh9IytwsuYCFCdRcL
+          - name: SENDGRID_KEY
+            value: yy
