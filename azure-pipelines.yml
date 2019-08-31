@@ -17,6 +17,9 @@ steps:
 - bash: ls -a
   displayName: 'ls'
 
+- script: npm install
+  displayName: 'NPM INSTALL'
+
 - script: npm test
   displayName: 'Run Test'
 
