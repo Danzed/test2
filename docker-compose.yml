@@ -4,7 +4,7 @@ services:
     restart: unless-stopped
     env_file: .env
     build: .
-    container_name: aven-web-api
+    container_name: aven-web-api-dev
     ports:
       - "9000:9000"
     environment:
