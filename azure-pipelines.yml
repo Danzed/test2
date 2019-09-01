@@ -41,7 +41,7 @@ steps:
     docker ps -a
   displayName: 'ls'
 
-- bash: docker tag $(imageName) $(registryServerName)/$(imageName)-dev:$(build.buildId)
+- bash: docker tag $(imageName) $(registryServerName)/$(imageName):$(build.buildId)
   displayName: 'docker tag'
 
 
