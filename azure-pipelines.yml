@@ -41,8 +41,8 @@ steps:
     docker ps -a
   displayName: 'ls'
 
-- bash: docker tag $(imageName) $(registryServerName)/$(imageName):$(build.buildId)
-  displayName: 'docker tag'
+# - bash: docker tag $(imageName) $(registryServerName)/$(imageName):$(build.buildId)
+#   displayName: 'docker tag'
 
 
 - bash: |
@@ -51,14 +51,14 @@ steps:
   displayName: 'docker push'
   condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/dev-ci-test'))
 
-# - task: HelmInstaller@0
-#   displayName: 'Install Helm'
-#   inputs:
-#     helmVersion: 2.14.1
+- task: HelmInstaller@0
+  displayName: 'Install Helm'
+  inputs:
+    helmVersion: 2.14.1
 
-# - bash: helm package --version $(build.buildId) --destination $(build.artifactStagingDirectory) $(system.defaultWorkingDirectory)/charts/$(projectName)
-#   displayName: 'helm package'
+- bash: helm package --version $(build.buildId) --destination $(build.artifactStagingDirectory) $(system.defaultWorkingDirectory)/charts/$(projectName)
+  displayName: 'helm package'
 
-# - bash: az acr helm push -n $(registryName) -u $(registryLogin) -p $(registryPassword) $(build.artifactStagingDirectory)/$(projectName)-$(build.buildId).tgz
-#   displayName: 'az acr helm push'
-#   condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/dev-ci-test'))
+- bash: az acr helm push -n $(registryName) -u $(registryLogin) -p $(registryPassword) $(build.artifactStagingDirectory)/$(projectName)-$(build.buildId).tgz
+  displayName: 'az acr helm push'
+  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/dev-ci-test'))
